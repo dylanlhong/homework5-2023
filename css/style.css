@@ -1,0 +1,102 @@
+/* Make logo animation */
+#logo{
+    animation-name: logo-move;
+    animation-duration: 5s;
+    max-width: 475px;
+}
+@keyframes logo-move{
+    from {width: 25px; opacity: 0;}
+    to {width: 475px; opacity: 1;}
+}
+
+/* Set background and font of everything in body */
+body{
+    font-family: "Poppins", serif;
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+
+/* set all normal flex characteristics so doesn't misbehave */
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.nav_links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+/* changed color to blue for all */
+.nav_item a:link, .nav_item a:visited {
+    color: blue;
+}
+
+.card > header{
+    background: #288088;
+    border: 2px solid #288088;
+    padding: 20px 0px;
+    border-radius: 50px 50px 0px 0px;
+}
+
+.card{
+    border-radius: 50px 50px 0px 0px;
+    flex-basis: 450px;
+}
+
+.pricing{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery img{
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+    align-self: normal;
+}
+
+.gallery{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 900px){
+    header{
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .nav_links{
+        flex-direction: row;
+        justify-content: flex-end;
+        /* justify-content isn't working like it should not to the most right */
+    }
+
+    .card{
+        flex-basis: 275px;
+    }
+
+    body > header:first-of-type{
+        position: sticky;
+        top: 0;
+        /* doesn't keep it in the same position */
+    }
+}
+
+@media screen and (prefers-reduced-motion: reduce){
+    #logo{
+        animation: none;
+    }
+}
