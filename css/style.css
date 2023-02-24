@@ -25,20 +25,21 @@ header{
     flex-wrap: wrap;
 }
 
+/* nav_links formatted in column, aligned on the left. Specifies flex-properties so it won't misbehave. */
 .nav_links{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
 }
 
 
-/* changed color to blue for all */
+/* changed color to blue for all links */
 .nav_item a:link, .nav_item a:visited {
     color: blue;
 }
 
+/* Style header elements that are direct child of card class */
 .card > header{
     background: #288088;
     border: 2px solid #288088;
@@ -46,11 +47,13 @@ header{
     border-radius: 50px 50px 0px 0px;
 }
 
+/* Individually change flex and properties of card classes*/
 .card{
     border-radius: 50px 50px 0px 0px;
     flex-basis: 450px;
 }
 
+/* Set up basic flex for pricing class */
 .pricing{
     display: flex;
     flex-flow: row wrap;
@@ -58,6 +61,7 @@ header{
     align-items: center;
 }
 
+/* Format the gallery images and match it to screenshots */
 .gallery img{
     border: 10px solid #50C7C7;
     margin: 10px;
@@ -65,6 +69,7 @@ header{
     align-self: normal;
 }
 
+/* Set up basic flex for gallery class, so it naturally changes at screen gets bigger */
 .gallery{
     display: flex;
     flex-flow: row wrap;
@@ -72,31 +77,76 @@ header{
     align-items: center;
 }
 
+/* Media query for when screen is 900 px or more */
 @media only screen and (min-width: 900px){
+    /* Override header to be on the left and far apart (only for nav) */
     header{
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
+    /* Override nav_links class to be in a row */
     .nav_links{
         flex-direction: row;
-        justify-content: flex-end;
-        /* justify-content isn't working like it should not to the most right */
     }
 
+    /* Override card class to have a "size" of 275px */
     .card{
         flex-basis: 275px;
     }
 
+    /* The first header which is the navigation plus the logo.
+    Formatted so it is always at the top of the page. */
     body > header:first-of-type{
         position: sticky;
         top: 0;
-        /* doesn't keep it in the same position */
     }
 }
 
+/* If user wants reduced-motion, no animation */
 @media screen and (prefers-reduced-motion: reduce){
     #logo{
         animation: none;
+    }
+}
+
+/* For when tries to print page. Will override the necessary elements of the mobile version */
+@media print{
+    body{
+        font-family: Arial, Helvetica;
+        background-image: none;
+    }
+
+    /* Increase full span to 100% so that the nav_links span further */
+    nav{
+        width: 100%;
+    }
+
+    /* override mobile version to format nav_links spread out */
+    .nav_links{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    /* all three cards next to each other and aligned along bottom */
+    .pricing{
+        flex-wrap: nowrap;
+        align-items: flex-end;
+    }
+
+    /* format and override mobile version */
+    .card{
+        border: 2px solid #45ADDD;
+        flex-basis: 325px;
+    }
+
+    /* Don't display the gallery */
+    #gallery, .gallery{
+        display: none;
+    }
+
+    /* Adds a thumbs up after the second list item in every card */
+    .card li:nth-child(2)::after{
+        content: "👍"
     }
 }
